@@ -300,23 +300,31 @@ public class FinancialTracker {
             System.out.println("5) Search by Vendor");
             System.out.println("0) Back");
 
-            String input = scanner.nextLine().trim();
+            String input = scanner.nextLine();
+
+            LocalDate today = LocalDate.now();
 
             switch (input) {
                 case "1":
-                    System.out.println("Month To Date report is not implemented yet.");
+                    filterTransactionsByDate(today.withDayOfMonth(1), today);
                     break;
                 case "2":
-                    System.out.println("Previous Month report is not implemented yet.");
+                    LocalDate prevMonthStart = today.minusMonths(1).withDayOfMonth(1);
+                    LocalDate prevMonthEnd = prevMonthStart.withDayOfMonth(prevMonthStart.lengthOfMonth());
+                    filterTransactionsByDate(prevMonthStart, prevMonthEnd);
                     break;
                 case "3":
-                    System.out.println("Year To Date report is not implemented yet.");
+                    filterTransactionsByDate(today.withDayOfYear(1), today);
                     break;
                 case "4":
-                    System.out.println("Previous Year report is not implemented yet.");
+                    LocalDate prevYearStart = today.minusYears(1).withDayOfYear(1);
+                    LocalDate prevYearEnd = prevYearStart.withDayOfYear(prevYearStart.lengthOfYear());
+                    filterTransactionsByDate(prevYearStart, prevYearEnd);
                     break;
                 case "5":
-                    System.out.println("Vendor search is not implemented yet.");
+                    System.out.print("Enter vendor name to search: ");
+                    String vendor = scanner.nextLine().trim();
+                    filterTransactionsByVendor(vendor);
                     break;
                 case "0":
                     running = false;
@@ -326,23 +334,36 @@ public class FinancialTracker {
                     break;
             }
         }
-
     }
 
+    // Method: filterTransactionsByDate
+// Description: Filters and prints transactions between startDate and endDate.
     private static void filterTransactionsByDate(LocalDate startDate, LocalDate endDate) {
-        // This method filters the transactions by date and prints a report to the console.
-        // It takes two parameters: startDate and endDate, which represent the range of dates to filter by.
-        // The method loops through the transactions list and checks each transaction's date against the date range.
-        // Transactions that fall within the date range are printed to the console.
-        // If no transactions fall within the date range, the method prints a message indicating that there are no results.
+        boolean found = false;
+        for (Transaction t : transactions) {
+            if (!t.getDate().isBefore(startDate) && !t.getDate().isAfter(endDate)) {
+                System.out.println(t.toString());
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("No transactions found in the given date range.");
+        }
     }
 
+    // Method: filterTransactionsByVendor
+// Description: Filters and prints transactions matching the given vendor name.
     private static void filterTransactionsByVendor(String vendor) {
-        // This method filters the transactions by vendor and prints a report to the console.
-        // It takes one parameter: vendor, which represents the name of the vendor to filter by.
-        // The method loops through the transactions list and checks each transaction's vendor name against the specified vendor name.
-        // Transactions with a matching vendor name are printed to the console.
-        // If no transactions match the specified vendor name, the method prints a message indicating that there are no results.
+        boolean found = false;
+        for (Transaction t : transactions) {
+            if (t.getVendor().equalsIgnoreCase(vendor)) {
+                System.out.println(t.toString());
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("No transactions found for vendor: " + vendor);
+        }
     }
 }
 
