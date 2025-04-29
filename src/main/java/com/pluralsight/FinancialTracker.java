@@ -87,7 +87,7 @@ public class FinancialTracker {
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split("\\|");
 
-                // Assuming the file is always well-formed, process the line directly
+                //
                 LocalDate date = LocalDate.parse(parts[0]);
                 LocalTime time = LocalTime.parse(parts[1]);
                 String description = parts[2];
@@ -178,7 +178,8 @@ public class FinancialTracker {
                 return;
             }
 
-            amount = -amount; // Turn it into a negative payment
+            // Turn it into a negative payment
+            amount = -amount;
 
             Transaction payment = new Transaction(date, time, description, vendor, amount);
             transactions.add(payment);
@@ -256,16 +257,23 @@ public class FinancialTracker {
     private static void displayLedger() {
         // This method should display a table of all transactions in the `transactions` ArrayList.
         // The table should have columns for date, time, description, vendor, and amount.
+        System.out.printf("%-12s %-10s %-20s %-20s %10s%n", "Date", "Time", "Description", "Vendor", "Amount");
+        System.out.println("------------------------------------------------------------------------------------------");
+
         for (Transaction transaction : transactions) {
             System.out.println(transaction.toString());
         }
     }
 
+
     // Method: displayDeposits
     // Description: Displays only deposits (positive amounts).
     // ------------------------------------
     private static void displayDeposits() {
-        // Displays all deposits (positive amounts) using toString()
+        // This method displays only deposits (amount > 0).
+        System.out.printf("%-12s %-10s %-20s %-20s %10s%n", "Date", "Time", "Description", "Vendor", "Amount");
+        System.out.println("------------------------------------------------------------------------------------------");
+
         for (Transaction transaction : transactions) {
             if (transaction.getAmount() > 0) {
                 System.out.println(transaction.toString());
@@ -273,17 +281,22 @@ public class FinancialTracker {
         }
     }
 
+
     // Method: displayPayments
     // Description: Displays only payments (negative amounts).
     // ------------------------------------
     private static void displayPayments() {
-        // Displays all payments (negative amounts) using toString()
+        // This method displays only payments (amount < 0).
+        System.out.printf("%-12s %-10s %-20s %-20s %10s%n", "Date", "Time", "Description", "Vendor", "Amount");
+        System.out.println("------------------------------------------------------------------------------------------");
+
         for (Transaction transaction : transactions) {
             if (transaction.getAmount() < 0) {
                 System.out.println(transaction.toString());
             }
         }
     }
+
 
     // Method: reportsMenu
     // Description: Displays report options like month-to-date, previous month, vendor search, etc.
@@ -323,7 +336,7 @@ public class FinancialTracker {
                     break;
                 case "5":
                     System.out.print("Enter vendor name to search: ");
-                    String vendor = scanner.nextLine().trim();
+                    String vendor = scanner.nextLine();
                     filterTransactionsByVendor(vendor);
                     break;
                 case "0":
@@ -339,10 +352,15 @@ public class FinancialTracker {
     // Method: filterTransactionsByDate
 // Description: Filters and prints transactions between startDate and endDate.
     private static void filterTransactionsByDate(LocalDate startDate, LocalDate endDate) {
+        // This method filters the transactions by date and prints a report to the console.
+        // It takes two parameters: startDate and endDate, which represent the range of dates to filter by.
+        // The method loops through the transactions list and checks each transaction's date against the date range.
+        // Transactions that fall within the date range are printed to the console.
+        // If no transactions fall within the date range, the method prints a message indicating that there are no results.
         boolean found = false;
-        for (Transaction t : transactions) {
-            if (!t.getDate().isBefore(startDate) && !t.getDate().isAfter(endDate)) {
-                System.out.println(t.toString());
+        for (Transaction transaction : transactions) {
+            if (!transaction.getDate().isBefore(startDate) && !transaction.getDate().isAfter(endDate)) {
+                System.out.println(transaction.toString());
                 found = true;
             }
         }
@@ -354,10 +372,15 @@ public class FinancialTracker {
     // Method: filterTransactionsByVendor
 // Description: Filters and prints transactions matching the given vendor name.
     private static void filterTransactionsByVendor(String vendor) {
+        // This method filters the transactions by vendor and prints a report to the console.
+        // It takes one parameter: vendor, which represents the name of the vendor to filter by.
+        // The method loops through the transactions list and checks each transaction's vendor name against the specified vendor name.
+        // Transactions with a matching vendor name are printed to the console.
+        // If no transactions match the specified vendor name, the method prints a message indicating that there are no results.
         boolean found = false;
-        for (Transaction t : transactions) {
-            if (t.getVendor().equalsIgnoreCase(vendor)) {
-                System.out.println(t.toString());
+        for (Transaction transaction : transactions) {
+            if (transaction.getVendor().equalsIgnoreCase(vendor)) {
+                System.out.println(transaction.toString());
                 found = true;
             }
         }

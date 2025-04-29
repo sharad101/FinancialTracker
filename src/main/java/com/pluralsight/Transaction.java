@@ -79,9 +79,8 @@ public class Transaction {
     // Description: Converts the Transaction object into a single formatted line
     // ready to be saved into the transactions.csv file.
     // ------------------------------------
-    @Override
     public String toString() {
-        return date + " | " + time + " | " + description + " | " + vendor + " | " + String.format("%.2f", amount);
+        return String.format("%-12s %-10s %-20s %-20s %10.2f", date.toString(), time.toString(), description, vendor, amount);
     }
 
 
