@@ -256,43 +256,35 @@ public class FinancialTracker {
     private static void displayLedger() {
         // This method should display a table of all transactions in the `transactions` ArrayList.
         // The table should have columns for date, time, description, vendor, and amount.
-        for (int i = transactions.size() - 1; i >= 0; i--) {
-            Transaction t = transactions.get(i);
-            System.out.println(t.getDate() + " | " + t.getTime() + " | " + t.getDescription() + " | " + t.getVendor() + " | " + t.getAmount());
+        for (Transaction transaction : transactions) {
+            System.out.println(transaction.toString());
         }
     }
-
 
     // Method: displayDeposits
     // Description: Displays only deposits (positive amounts).
     // ------------------------------------
     private static void displayDeposits() {
-        // This method should display a table of all deposits in the `transactions` ArrayList.
-        // The table should have columns for date, time, description, vendor, and amount.
-        for (int i = transactions.size() - 1; i >= 0; i--) {
-            Transaction t = transactions.get(i);
-            if (t.getAmount() > 0) {
-                System.out.println(t.getDate() + " | " + t.getTime() + " | " + t.getDescription() + " | " + t.getVendor() + " | " + t.getAmount());
+        // Displays all deposits (positive amounts) using toString()
+        for (Transaction transaction : transactions) {
+            if (transaction.getAmount() > 0) {
+                System.out.println(transaction.toString());
             }
         }
     }
-
 
     // Method: displayPayments
     // Description: Displays only payments (negative amounts).
     // ------------------------------------
     private static void displayPayments() {
-        // This method should display a table of all payments in the `transactions` ArrayList.
-        // The table should have columns for date, time, description, vendor, and amount.
-        for (int i = transactions.size() - 1; i >= 0; i--) {
-            Transaction t = transactions.get(i);
-            if (t.getAmount() < 0) {
-                System.out.println(t.getDate() + " | " + t.getTime() + " | " + t.getDescription() + " | " + t.getVendor() + " | " + t.getAmount());
+        // Displays all payments (negative amounts) using toString()
+        for (Transaction transaction : transactions) {
+            if (transaction.getAmount() < 0) {
+                System.out.println(transaction.toString());
             }
         }
     }
 
-    
     // Method: reportsMenu
     // Description: Displays report options like month-to-date, previous month, vendor search, etc.
     // ------------------------------------
@@ -353,3 +345,6 @@ public class FinancialTracker {
         // If no transactions match the specified vendor name, the method prints a message indicating that there are no results.
     }
 }
+
+
+

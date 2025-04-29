@@ -79,12 +79,10 @@ public class Transaction {
     // Description: Converts the Transaction object into a single formatted line
     // ready to be saved into the transactions.csv file.
     // ------------------------------------
-    public String toFileString() {
-        return String.format("%s|%s|%s|%s|%.2f",
-                date.toString(),
-                time.toString(),
-                description,
-                vendor,
-                amount);
+    @Override
+    public String toString() {
+        return date + " | " + time + " | " + description + " | " + vendor + " | " + String.format("%.2f", amount);
     }
+
+
 }
