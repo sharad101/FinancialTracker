@@ -358,6 +358,8 @@ public class FinancialTracker {
         // Transactions that fall within the date range are printed to the console.
         // If no transactions fall within the date range, the method prints a message indicating that there are no results.
         boolean found = false;
+        System.out.printf("%-12s %-10s %-20s %-20s %10s%n", "Date", "Time", "Description", "Vendor", "Amount");
+        System.out.println("------------------------------------------------------------------------------------------");
         for (Transaction transaction : transactions) {
             if (!transaction.getDate().isBefore(startDate) && !transaction.getDate().isAfter(endDate)) {
                 System.out.println(transaction.toString());
@@ -378,6 +380,9 @@ public class FinancialTracker {
         // Transactions with a matching vendor name are printed to the console.
         // If no transactions match the specified vendor name, the method prints a message indicating that there are no results.
         boolean found = false;
+        System.out.printf("%-12s %-10s %-20s %-20s %10s%n", "Date", "Time", "Description", "Vendor", "Amount");
+        System.out.println("------------------------------------------------------------------------------------------");
+
         for (Transaction transaction : transactions) {
             if (transaction.getVendor().equalsIgnoreCase(vendor)) {
                 System.out.println(transaction.toString());
