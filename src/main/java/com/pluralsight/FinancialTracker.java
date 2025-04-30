@@ -370,10 +370,14 @@ public class FinancialTracker {
     private static void customSearch(Scanner scanner){
         System.out.print("Start Date(yyyy-mm-dd): ");
         String startDatestring = scanner.nextLine();
+        // If the user input is empty, set startDate to null.
+        // Else convert the input string into a LocalDate using the DATE_FORMATTER.
         LocalDate startDate = startDatestring.isEmpty() ? null: LocalDate.parse(startDatestring, DATE_FORMATTER);
 
         System.out.print("End Date(yyyy-mm-dd): ");
         String endDatestring = scanner.nextLine();
+        // If the user input is empty, set endDate to null.
+        // Else convert the input string into a LocalDate using the DATE_FORMATTER.
         LocalDate endDate = endDatestring.isEmpty() ? null: LocalDate.parse(endDatestring, DATE_FORMATTER);
 
         System.out.print("Description: ");
@@ -396,9 +400,15 @@ public class FinancialTracker {
             // If it is empty, it sets startDate to null.
             // If it is not empty, it parses the string into a LocalDate using the specified DATE_FORMATTER.
             if (startDate != null && transaction.getDate().isBefore(startDate)) match = false;
+            // It checks if endDate is not null and whether the transaction's date is after the given endDate.
+            // If both conditions are true, it sets match to false, so this transaction does not fall within the valid range
             if (endDate != null && transaction.getDate().isAfter(endDate)) match = false;
+            // If the user entered a description, check if the transaction's description contains it
             if (!description.isEmpty() && !transaction.getDescription().toLowerCase().contains(description.toLowerCase())) match = false;
+            // Checks if the user entered a vendor name
+            // If a vendor is provided, it compares the vendor input to the transaction list to the input
             if (!vendor.isEmpty() && !transaction.getVendor().toLowerCase().contains(vendor.toLowerCase())) match = false;
+            // If an amount is provided, compares it to the transaction’s amount
             if (amount != null && transaction.getAmount() != amount) match = false;
 
             if (match) {
