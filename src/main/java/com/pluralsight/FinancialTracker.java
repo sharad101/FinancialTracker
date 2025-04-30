@@ -311,6 +311,7 @@ public class FinancialTracker {
             System.out.println("3) Year To Date");
             System.out.println("4) Previous Year");
             System.out.println("5) Search by Vendor");
+            System.out.println("6) Custom Search");
             System.out.println("0) Back");
 
             String input = scanner.nextLine();
@@ -397,28 +398,62 @@ public class FinancialTracker {
         }
     }
 
-    private static void customSearch(Scanner scanner){
-        System.out.print("Start Date(yyyy-mm-dd): ");
-        String startDatestring = scanner.nextLine();
-        LocalDate startDate = startDatestring.isEmpty() ? null: LocalDate.parse(startDatestring, DATE_FORMATTER);
+    // Challenge
+    private static void customSearch(Scanner scanner) {
+        System.out.println("Leave any field blank to skip filtering by that field.");
 
-        System.out.print("End Date(yyyy-mm-dd): ");
-        String endDatestring = scanner.nextLine();
-        LocalDate endDate = endDatestring.isEmpty() ? null: LocalDate.parse(endDatestring, DATE_FORMATTER);
+        System.out.print("Start Date (yyyy-MM-dd): ");
+        String startDateStr = scanner.nextLine().trim();
+        LocalDate startDate = startDateStr.isEmpty() ? null : LocalDate.parse(startDateStr, DATE_FORMATTER);
+
+        System.out.print("End Date (yyyy-MM-dd): ");
+        String endDateStr = scanner.nextLine().trim();
+        LocalDate endDate = endDateStr.isEmpty() ? null : LocalDate.parse(endDateStr, DATE_FORMATTER);
 
         System.out.print("Description: ");
-        String description = scanner.nextLine();
+        String description = scanner.nextLine().trim();
 
         System.out.print("Vendor: ");
-        String description = scanner.nextLine();
+        String vendor = scanner.nextLine().trim();
 
         System.out.print("Amount: ");
-        String description = scanner.nextLine();
+        String amountStr = scanner.nextLine().trim();
+        Double amount = amountStr.isEmpty() ? null : Double.parseDouble(amountStr);
 
+        boolean found = false;
 
+        for (Transaction transaction : transactions) {
+            boolean match = true;
 
+            if (startDate != null && transaction.getDate().isBefore(startDate)) match = false;
+            if (endDate != null && transaction.getDate().isAfter(endDate)) match = false;
+            if (!description.isEmpty() && !transaction.getDescription().toLowerCase().contains(description.toLowerCase()))
+                match = false;
+            if (!vendor.isEmpty() && !transaction.getVendor().toLowerCase().contains(vendor.toLowerCase()))
+                match = false;
+            if (amount != null && transaction.getAmount() != amount) match = false;
+
+            if (match) {
+                // Print header only once, when the first match is found
+                if (!found) {
+                    System.out.printf("%-12s %-10s %-20s %-20s %10s%n", "Date", "Time", "Description", "Vendor", "Amount");
+                    System.out.println("------------------------------------------------------------------------------------------");
+                }
+
+                System.out.println(transaction.toString());
+                found = true;
+            }
+        }
+
+        if (!found) {
+            System.out.println("No transactions could be found based on your search.");
+        }
     }
 }
+
+
+
+
 
 
 
