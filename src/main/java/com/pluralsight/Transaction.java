@@ -82,6 +82,4 @@ public class Transaction {
     public String toString() {
         return String.format("%-12s %-10s %-20s %-20s %10.2f", date.toString(), time.toString(), description, vendor, amount);
     }
-
-
 }

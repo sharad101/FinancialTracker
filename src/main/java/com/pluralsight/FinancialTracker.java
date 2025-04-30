@@ -226,7 +226,7 @@ public class FinancialTracker {
             System.out.println("R) Reports");
             System.out.println("H) Home");
 
-            String input = scanner.nextLine().trim();
+            String input = scanner.nextLine();
 
             switch (input.toUpperCase()) {
                 case "A":
