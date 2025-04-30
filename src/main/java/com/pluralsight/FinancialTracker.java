@@ -339,6 +339,9 @@ public class FinancialTracker {
                     String vendor = scanner.nextLine();
                     filterTransactionsByVendor(vendor);
                     break;
+                case "6":
+                    customSearch(scanner);
+                    break;
                 case "0":
                     running = false;
                     break;
@@ -392,6 +395,28 @@ public class FinancialTracker {
         if (!found) {
             System.out.println("No transactions found for vendor: " + vendor);
         }
+    }
+
+    private static void customSearch(Scanner scanner){
+        System.out.print("Start Date(yyyy-mm-dd): ");
+        String startDatestring = scanner.nextLine();
+        LocalDate startDate = startDatestring.isEmpty() ? null: LocalDate.parse(startDatestring, DATE_FORMATTER);
+
+        System.out.print("End Date(yyyy-mm-dd): ");
+        String endDatestring = scanner.nextLine();
+        LocalDate endDate = endDatestring.isEmpty() ? null: LocalDate.parse(endDatestring, DATE_FORMATTER);
+
+        System.out.print("Description: ");
+        String description = scanner.nextLine();
+
+        System.out.print("Vendor: ");
+        String description = scanner.nextLine();
+
+        System.out.print("Amount: ");
+        String description = scanner.nextLine();
+
+
+
     }
 }
 

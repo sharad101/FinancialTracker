@@ -80,6 +80,7 @@ public class Transaction {
     // ready to be saved into the transactions.csv file.
     // ------------------------------------
     public String toString() {
+        // The dash (-) on the left represents to left-align a string
         return String.format("%-12s %-10s %-20s %-20s %10.2f", date.toString(), time.toString(), description, vendor, amount);
     }
 }
