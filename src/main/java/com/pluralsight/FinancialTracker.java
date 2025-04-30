@@ -63,14 +63,6 @@ public class FinancialTracker {
     // Description: Loads transactions from the CSV file into the ArrayList at program start.
     // ------------------------------------
     public static void loadTransactions(String fileName) {
-        // This method should load transactions from a file with the given file name.
-        // If the file does not exist, it should be created.
-        // The transactions should be stored in the `transactions` ArrayList.
-        // Each line of the file represents a single transaction in the following format:
-        // <date>|<time>|<description>|<vendor>|<amount>
-        // For example: 2023-04-15|10:13:25|ergonomic keyboard|Amazon|-89.50
-        // After reading all the transactions, the file should be closed.
-        // If any errors occur, an appropriate error message should be displayed.
         File file = new File(fileName);
 
         try {
@@ -111,11 +103,6 @@ public class FinancialTracker {
     // Description: Prompts user for deposit info and saves it to transactions list and CSV file.
     // ------------------------------------
     private static void addDeposit(Scanner scanner) {
-        // This method should prompt the user to enter the date, time, description, vendor, and amount of a deposit.
-        // The user should enter the date and time in the following format: yyyy-MM-dd HH:mm:ss
-        // The amount should be a positive number.
-        // After validating the input, a new `Transaction` object should be created with the entered values.
-        // The new deposit should be added to the `transactions` ArrayList
         try {
             System.out.println("Enter date (yyyy-MM-dd): ");
             LocalDate date = LocalDate.parse(scanner.nextLine(), DATE_FORMATTER);
@@ -152,11 +139,6 @@ public class FinancialTracker {
     // Description: Prompts user for payment info, makes amount negative, saves to list and file.
     // ------------------------------------
     private static void addPayment(Scanner scanner) {
-        // This method should prompt the user to enter the date, time, description, vendor, and amount of a payment.
-        // The user should enter the date and time in the following format: yyyy-MM-dd HH:mm:ss
-        // The amount received should be a positive number then transformed to a negative number.
-        // After validating the input, a new `Transaction` object should be created with the entered values.
-        // The new pay
         try {
             System.out.println("Enter date (yyyy-MM-dd): ");
             LocalDate date = LocalDate.parse(scanner.nextLine(), DATE_FORMATTER);
@@ -255,8 +237,6 @@ public class FinancialTracker {
     // Description: Displays all transactions (most recent ones first).
     // ------------------------------------
     private static void displayLedger() {
-        // This method should display a table of all transactions in the `transactions` ArrayList.
-        // The table should have columns for date, time, description, vendor, and amount.
         System.out.printf("%-12s %-10s %-20s %-20s %10s%n", "Date", "Time", "Description", "Vendor", "Amount");
         System.out.println("------------------------------------------------------------------------------------------");
 
@@ -356,11 +336,6 @@ public class FinancialTracker {
     // Method: filterTransactionsByDate
 // Description: Filters and prints transactions between startDate and endDate.
     private static void filterTransactionsByDate(LocalDate startDate, LocalDate endDate) {
-        // This method filters the transactions by date and prints a report to the console.
-        // It takes two parameters: startDate and endDate, which represent the range of dates to filter by.
-        // The method loops through the transactions list and checks each transaction's date against the date range.
-        // Transactions that fall within the date range are printed to the console.
-        // If no transactions fall within the date range, the method prints a message indicating that there are no results.
         boolean found = false;
         System.out.printf("%-12s %-10s %-20s %-20s %10s%n", "Date", "Time", "Description", "Vendor", "Amount");
         System.out.println("------------------------------------------------------------------------------------------");
@@ -378,11 +353,6 @@ public class FinancialTracker {
     // Method: filterTransactionsByVendor
 // Description: Filters and prints transactions matching the given vendor name.
     private static void filterTransactionsByVendor(String vendor) {
-        // This method filters the transactions by vendor and prints a report to the console.
-        // It takes one parameter: vendor, which represents the name of the vendor to filter by.
-        // The method loops through the transactions list and checks each transaction's vendor name against the specified vendor name.
-        // Transactions with a matching vendor name are printed to the console.
-        // If no transactions match the specified vendor name, the method prints a message indicating that there are no results.
         boolean found = false;
         System.out.printf("%-12s %-10s %-20s %-20s %10s%n", "Date", "Time", "Description", "Vendor", "Amount");
         System.out.println("------------------------------------------------------------------------------------------");
@@ -399,61 +369,48 @@ public class FinancialTracker {
     }
 
     // Challenge
-    private static void customSearch(Scanner scanner) {
-        System.out.println("Leave any field blank to skip filtering by that field.");
+    private static void customSearch(Scanner scanner){
+        System.out.print("Start Date(yyyy-mm-dd): ");
+        String startDatestring = scanner.nextLine();
+        LocalDate startDate = startDatestring.isEmpty() ? null: LocalDate.parse(startDatestring, DATE_FORMATTER);
 
-        System.out.print("Start Date (yyyy-MM-dd): ");
-        String startDateStr = scanner.nextLine().trim();
-        LocalDate startDate = startDateStr.isEmpty() ? null : LocalDate.parse(startDateStr, DATE_FORMATTER);
-
-        System.out.print("End Date (yyyy-MM-dd): ");
-        String endDateStr = scanner.nextLine().trim();
-        LocalDate endDate = endDateStr.isEmpty() ? null : LocalDate.parse(endDateStr, DATE_FORMATTER);
+        System.out.print("End Date(yyyy-mm-dd): ");
+        String endDatestring = scanner.nextLine();
+        LocalDate endDate = endDatestring.isEmpty() ? null: LocalDate.parse(endDatestring, DATE_FORMATTER);
 
         System.out.print("Description: ");
-        String description = scanner.nextLine().trim();
+        String description = scanner.nextLine();
 
         System.out.print("Vendor: ");
-        String vendor = scanner.nextLine().trim();
+        String vendor = scanner.nextLine();
 
         System.out.print("Amount: ");
-        String amountStr = scanner.nextLine().trim();
-        Double amount = amountStr.isEmpty() ? null : Double.parseDouble(amountStr);
+        String amountString = scanner.nextLine();
+        Double amount = amountString.isEmpty() ? null: Double.parseDouble(amountString);
 
         boolean found = false;
-
+        System.out.printf("%-12s %-10s %-20s %-20s %10s%n", "Date", "Time", "Description", "Vendor", "Amount");
+        System.out.println("------------------------------------------------------------------------------------------");
         for (Transaction transaction : transactions) {
             boolean match = true;
 
             if (startDate != null && transaction.getDate().isBefore(startDate)) match = false;
             if (endDate != null && transaction.getDate().isAfter(endDate)) match = false;
-            if (!description.isEmpty() && !transaction.getDescription().toLowerCase().contains(description.toLowerCase()))
-                match = false;
-            if (!vendor.isEmpty() && !transaction.getVendor().toLowerCase().contains(vendor.toLowerCase()))
-                match = false;
+            if (!description.isEmpty() && !transaction.getDescription().toLowerCase().contains(description.toLowerCase())) match = false;
+            if (!vendor.isEmpty() && !transaction.getVendor().toLowerCase().contains(vendor.toLowerCase())) match = false;
             if (amount != null && transaction.getAmount() != amount) match = false;
 
             if (match) {
-                // Print header only once, when the first match is found
-                if (!found) {
-                    System.out.printf("%-12s %-10s %-20s %-20s %10s%n", "Date", "Time", "Description", "Vendor", "Amount");
-                    System.out.println("------------------------------------------------------------------------------------------");
-                }
-
                 System.out.println(transaction.toString());
                 found = true;
             }
-        }
 
-        if (!found) {
-            System.out.println("No transactions could be found based on your search.");
+    if (!found){
+        System.out.println("No transactions could be found based on your search ");
+            }
         }
     }
 }
-
-
-
-
 
 
 
