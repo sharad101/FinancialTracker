@@ -20,7 +20,6 @@ public class FinancialTracker {
 
     // Method: main
     // Description: Starts the program, shows Home Screen, handles user navigation.
-    // ------------------------------------
     public static void main(String[] args) {
         loadTransactions(FILE_NAME);
         Scanner scanner = new Scanner(System.in);
@@ -61,7 +60,6 @@ public class FinancialTracker {
 
     // Method: loadTransactions
     // Description: Loads transactions from the CSV file into the ArrayList at program start.
-    // ------------------------------------
     public static void loadTransactions(String fileName) {
         File file = new File(fileName);
 
@@ -101,7 +99,6 @@ public class FinancialTracker {
 
     // Method: addDeposit
     // Description: Prompts user for deposit info and saves it to transactions list and CSV file.
-    // ------------------------------------
     private static void addDeposit(Scanner scanner) {
         try {
             System.out.println("Enter date (yyyy-MM-dd): ");
@@ -136,8 +133,7 @@ public class FinancialTracker {
 
 
     // Method: addPayment
-    // Description: Prompts user for payment info, makes amount negative, saves to list and file.
-    // ------------------------------------
+    // Description: Prompts user for payment info, saves to list and file.
     private static void addPayment(Scanner scanner) {
         try {
             System.out.println("Enter date (yyyy-MM-dd): ");
@@ -176,7 +172,6 @@ public class FinancialTracker {
 
     // Method: saveTransaction
     // Description: Saves a new transaction into the CSV file.
-    // ------------------------------------
     private static void saveTransaction(Transaction transaction) {
         try {
             FileWriter writer = new FileWriter(FILE_NAME, true);
@@ -196,7 +191,6 @@ public class FinancialTracker {
 
     // Method: ledgerMenu
     // Description: Displays the Ledger options to the user (All, Deposits, Payments, Reports, Home).
-    // ------------------------------------
     private static void ledgerMenu(Scanner scanner) {
         boolean running = true;
         while (running) {
@@ -234,8 +228,7 @@ public class FinancialTracker {
     }
 
     // Method: displayLedger
-    // Description: Displays all transactions (most recent ones first).
-    // ------------------------------------
+    // Description: Displays all transactions
     private static void displayLedger() {
         System.out.printf("%-12s %-10s %-20s %-20s %10s%n", "Date", "Time", "Description", "Vendor", "Amount");
         System.out.println("------------------------------------------------------------------------------------------");
@@ -247,10 +240,9 @@ public class FinancialTracker {
 
 
     // Method: displayDeposits
-    // Description: Displays only deposits (positive amounts).
-    // ------------------------------------
+    // Description: Displays only deposits
     private static void displayDeposits() {
-        // This method displays only deposits (amount > 0).
+        // This method displays only deposits of amount greater than zero
         System.out.printf("%-12s %-10s %-20s %-20s %10s%n", "Date", "Time", "Description", "Vendor", "Amount");
         System.out.println("------------------------------------------------------------------------------------------");
 
@@ -263,8 +255,7 @@ public class FinancialTracker {
 
 
     // Method: displayPayments
-    // Description: Displays only payments (negative amounts).
-    // ------------------------------------
+    // Description: Displays only payments
     private static void displayPayments() {
         // This method displays only payments (amount < 0).
         System.out.printf("%-12s %-10s %-20s %-20s %10s%n", "Date", "Time", "Description", "Vendor", "Amount");
@@ -279,8 +270,8 @@ public class FinancialTracker {
 
 
     // Method: reportsMenu
-    // Description: Displays report options like month-to-date, previous month, vendor search, etc.
-    // ------------------------------------
+    // Description: Displays report options like month-to-date, previous month, vendor search,
+    // and the callenge whic is the custom search
     private static void reportsMenu(Scanner scanner) {
         boolean running = true;
         while (running) {
@@ -334,7 +325,7 @@ public class FinancialTracker {
     }
 
     // Method: filterTransactionsByDate
-// Description: Filters and prints transactions between startDate and endDate.
+    // Description: Filters and displays transactions between startDate and endDate.
     private static void filterTransactionsByDate(LocalDate startDate, LocalDate endDate) {
         boolean found = false;
         System.out.printf("%-12s %-10s %-20s %-20s %10s%n", "Date", "Time", "Description", "Vendor", "Amount");
@@ -351,7 +342,7 @@ public class FinancialTracker {
     }
 
     // Method: filterTransactionsByVendor
-// Description: Filters and prints transactions matching the given vendor name.
+    // Description: Filters and displays transactions matching the given vendor name.
     private static void filterTransactionsByVendor(String vendor) {
         boolean found = false;
         System.out.printf("%-12s %-10s %-20s %-20s %10s%n", "Date", "Time", "Description", "Vendor", "Amount");
@@ -369,6 +360,8 @@ public class FinancialTracker {
     }
 
     // Challenge
+    // Method: customSearch
+    // Description: Filters and displays transactions given the custom input by user
     private static void customSearch(Scanner scanner){
         System.out.print("Start Date(yyyy-mm-dd): ");
         String startDatestring = scanner.nextLine();
