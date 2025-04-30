@@ -271,7 +271,7 @@ public class FinancialTracker {
 
     // Method: reportsMenu
     // Description: Displays report options like month-to-date, previous month, vendor search,
-    // and the callenge whic is the custom search
+    // and the challenge which is the custom search
     private static void reportsMenu(Scanner scanner) {
         boolean running = true;
         while (running) {
@@ -287,13 +287,18 @@ public class FinancialTracker {
 
             String input = scanner.nextLine();
 
+            //Today is the variable that stores the current date
             LocalDate today = LocalDate.now();
 
             switch (input) {
                 case "1":
+                    //creates a new date with the same year and month as today, but sets the day to 1.
                     filterTransactionsByDate(today.withDayOfMonth(1), today);
                     break;
                 case "2":
+                    /*
+
+                     */
                     LocalDate prevMonthStart = today.minusMonths(1).withDayOfMonth(1);
                     LocalDate prevMonthEnd = prevMonthStart.withDayOfMonth(prevMonthStart.lengthOfMonth());
                     filterTransactionsByDate(prevMonthStart, prevMonthEnd);
@@ -387,6 +392,9 @@ public class FinancialTracker {
         for (Transaction transaction : transactions) {
             boolean match = true;
 
+            // It checks whether the string startDatestring is empty using .isEmpty().
+            // If it is empty, it sets startDate to null.
+            // If it is not empty, it parses the string into a LocalDate using the specified DATE_FORMATTER.
             if (startDate != null && transaction.getDate().isBefore(startDate)) match = false;
             if (endDate != null && transaction.getDate().isAfter(endDate)) match = false;
             if (!description.isEmpty() && !transaction.getDescription().toLowerCase().contains(description.toLowerCase())) match = false;
