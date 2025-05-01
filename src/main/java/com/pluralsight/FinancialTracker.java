@@ -414,11 +414,11 @@ public class FinancialTracker {
         for (Transaction transaction : transactions) {
             boolean match = true;
 
-            // It checks whether the string startDatestring is empty using .isEmpty().
+            // Checks whether the string startDatestring is empty using .isEmpty().
             // If it is empty, it sets startDate to null.
             // If it is not empty, it parses the string into a LocalDate using the specified DATE_FORMATTER.
             if (startDate != null && transaction.getDate().isBefore(startDate)) match = false;
-            // It checks if endDate is not null and whether the transaction's date is after the given endDate.
+            // Checks if endDate is not null and whether the transaction's date is after the given endDate.
             // If both conditions are true, it sets match to false, so this transaction does not fall within the valid range
             if (endDate != null && transaction.getDate().isAfter(endDate)) match = false;
             // If the user entered a description, check if the transaction's description contains it

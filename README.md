@@ -12,7 +12,7 @@ line.
 
 ## User Stories
 
-- As a user, I want to be able to input my data, so that the application can process it accordingly.
+- As a user, I want to be able to choose between adding a deposit, adding a payment, viewing the ledger, or exiting the application from the home menu.
 - As a user, I want to receive immediate feedback, so I can understand what to do next.
 
 ## Setup
