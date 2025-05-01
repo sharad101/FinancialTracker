@@ -294,18 +294,24 @@ public class FinancialTracker {
 
             switch (input) {
                 case "1":
-                    //creates a new date with the same year and month as today, but sets the day to 1.
+                    //The startDate parameter inside the method receives the value of today,
+                    //creates a new date representing the first day of the current month
+                    //The endDate parameter inside the method receives the value of today at the time of the call
                     filterTransactionsByDate(today.withDayOfMonth(1), today);
                     break;
                 case "2":
-                    /*
-
-                     */
+                    //The function today.minusMonths(1) subtracts one month from today's date,
+                    //prevMonthStart gives you the start of the month
+                    //The function prevMonthStart.lengthofMonth gives you num of days in that month,
+                    //Using withDayofMonth then returns the last day of the month
                     LocalDate prevMonthStart = today.minusMonths(1).withDayOfMonth(1);
                     LocalDate prevMonthEnd = prevMonthStart.withDayOfMonth(prevMonthStart.lengthOfMonth());
                     filterTransactionsByDate(prevMonthStart, prevMonthEnd);
                     break;
                 case "3":
+                    //The startDate parameter inside the method receives the value of today,
+                    //creates a new date representing the first day of the current month
+                    //The endDate parameter inside the method receives the value of today at the time of the call
                     filterTransactionsByDate(today.withDayOfYear(1), today);
                     break;
                 case "4":

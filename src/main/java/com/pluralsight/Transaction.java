@@ -5,8 +5,7 @@ import java.time.LocalTime;
 
 
 // Class: Transaction
-// Description: Represents a financial transaction (Deposit or Payment)
-// ------------------------------------
+// Description: Represents a financial transaction
 public class Transaction {
     private LocalDate date;
     private LocalTime time;
@@ -17,7 +16,6 @@ public class Transaction {
 
     // Constructor: Transaction
     // Description: Creates a new Transaction object with all fields.
-    // ------------------------------------
     public Transaction(LocalDate date, LocalTime time, String description, String vendor, double amount) {
         this.date = date;
         this.time = time;
@@ -29,7 +27,6 @@ public class Transaction {
 
     // Getter Methods
     // Description: Return the values of each field (Date, Time, etc.)
-    // ------------------------------------
     public LocalDate getDate() {
         return date;
     }
@@ -53,7 +50,6 @@ public class Transaction {
 
     // Setter Methods
     // Description: Allow updating the values of each field.
-    // ------------------------------------
     public void setDate(LocalDate date) {
         this.date = date;
     }
@@ -75,10 +71,8 @@ public class Transaction {
     }
 
 
-    // Method: toFileString
+    // Method: toString
     // Description: Converts the Transaction object into a single formatted line
-    // ready to be saved into the transactions.csv file.
-    // ------------------------------------
     public String toString() {
         // The dash (-) on the left represents to left-align a string
         return String.format("%-12s %-10s %-20s %-20s %10.2f", date.toString(), time.toString(), description, vendor, amount);
