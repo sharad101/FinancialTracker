@@ -204,7 +204,7 @@ public class FinancialTracker {
             System.out.println("R) Reports");
             System.out.println("H) Home");
 
-            String input = scanner.nextLine();
+            String input = scanner.nextLine().trim();
 
             switch (input.toUpperCase()) {
                 case "A":
@@ -235,9 +235,14 @@ public class FinancialTracker {
         System.out.printf("%-12s %-10s %-20s %-20s %10s%n", "Date", "Time", "Description", "Vendor", "Amount");
         System.out.println("------------------------------------------------------------------------------------------");
 
-        for (Transaction transaction : transactions) {
-            System.out.println(transaction.toString());
+        //Loop through the transactions list in reverse order to display the newest entries first
+        for (int i = transactions.size() - 1; i >= 0; i--) {
+            System.out.println(transactions.get(i));
         }
+
+//        for (Transaction transaction : transactions) {
+//            System.out.println(transaction.toString());
+//        }
     }
 
 
@@ -310,11 +315,15 @@ public class FinancialTracker {
                     break;
                 case "3":
                     //The startDate parameter inside the method receives the value of today,
-                    //creates a new date representing the first day of the current month
+                    //creates a new date representing the first day of the current year
                     //The endDate parameter inside the method receives the value of today at the time of the call
                     filterTransactionsByDate(today.withDayOfYear(1), today);
                     break;
                 case "4":
+                    //The function today.minusYears(1) subtracts one year from today's date,
+                    //prevYearStart gives you the start of the month
+                    //The function prevYearStart.lengthofYear gives you num of days in that year,
+                    //Using withDayofYear then returns the last day of the year
                     LocalDate prevYearStart = today.minusYears(1).withDayOfYear(1);
                     LocalDate prevYearEnd = prevYearStart.withDayOfYear(prevYearStart.lengthOfYear());
                     filterTransactionsByDate(prevYearStart, prevYearEnd);

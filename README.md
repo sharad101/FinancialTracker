@@ -1,14 +1,16 @@
-# Project Title
+# Financial Tracker/Accounting Ledger Application
 
 ## Description of the Project
 
-Briefly describe what this Java console application does. Mention its purpose and who the intended users are. Explain the main functionality and what problems it aims to solve.
+In this project, you will use what you have learned about Java programming to
+create a CLI application. With this application you can track all financial
+transactions for a business or for personal use.
+All transactions in the application should be read from and saved to a transaction
+file named transactions.csv. Each transaction should be saved as a single
+line
 
-![Class Diagram](path/to/your/class_diagram.png)
 
 ## User Stories
-
-List the user stories that guided the development of your application. Format these stories as: "As a [type of user], I want [some goal] so that [some reason]."
 
 - As a user, I want to be able to input my data, so that the application can process it accordingly.
 - As a user, I want to receive immediate feedback, so I can understand what to do next.
