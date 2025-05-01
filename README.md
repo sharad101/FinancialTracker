@@ -7,7 +7,7 @@ create a CLI application. With this application you can track all financial
 transactions for a business or for personal use.
 All transactions in the application should be read from and saved to a transaction
 file named transactions.csv. Each transaction should be saved as a single
-line
+line.
 
 
 ## User Stories
@@ -56,13 +56,8 @@ Outline potential future enhancements or functionalities you might consider addi
 
 List resources such as tutorials, articles, or documentation that helped you during the project.
 
-- [Java Programming Tutorial](https://www.example.com)
-- [Effective Java](https://www.example.com)
+- [Oracle](https://docs.oracle.com/javase/8/docs/api/java/time/LocalDate.html)
 
-## Team Members
-
-- **Name 1** - Specific contributions or roles.
-- **Name 2** - Specific contributions or roles.
 
 ## Thanks
 
