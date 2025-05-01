@@ -64,7 +64,6 @@ public class FinancialTracker {
         File file = new File(fileName);
 
         try {
-            // Only proceed if the file exists
             if (!file.exists()) {
                 System.out.println("File does not exist");
                 return;
@@ -77,8 +76,8 @@ public class FinancialTracker {
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split("\\|");
 
-                //
-                LocalDate date = LocalDate.parse(parts[0]);
+                //Parse the transactions.csv
+                LocalDate date = LocalDate.parse(parts[0]); //
                 LocalTime time = LocalTime.parse(parts[1]);
                 String description = parts[2];
                 String vendor = parts[3];
@@ -120,6 +119,7 @@ public class FinancialTracker {
                 System.out.println("Amount must be positive.");
                 return;
             }
+
 
             Transaction deposit = new Transaction(date, time, description, vendor, amount);
             transactions.add(deposit);
@@ -174,7 +174,9 @@ public class FinancialTracker {
     // Description: Saves a new transaction into the CSV file.
     private static void saveTransaction(Transaction transaction) {
         try {
-            FileWriter writer = new FileWriter(FILE_NAME, true);
+
+            FileWriter fileWriter = new FileWriter(FILE_NAME, true);
+            BufferedWriter writer = new BufferedWriter(fileWriter);
             writer.write(
                     transaction.getDate() + "|" +
                             transaction.getTime() + "|" +
