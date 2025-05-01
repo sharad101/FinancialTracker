@@ -422,10 +422,12 @@ public class FinancialTracker {
             // If both conditions are true, it sets match to false, so this transaction does not fall within the valid range
             if (endDate != null && transaction.getDate().isAfter(endDate)) match = false;
             // If the user entered a description, check if the transaction's description contains it
-            if (!description.isEmpty() && !transaction.getDescription().toLowerCase().contains(description.toLowerCase())) match = false;
+            if (!description.isEmpty() && !transaction.getDescription().toLowerCase().contains(description.toLowerCase()))
+                match = false;
             // Checks if the user entered a vendor name
             // If a vendor is provided, it compares the vendor input to the transaction list to the input
-            if (!vendor.isEmpty() && !transaction.getVendor().toLowerCase().contains(vendor.toLowerCase())) match = false;
+            if (!vendor.isEmpty() && !transaction.getVendor().toLowerCase().contains(vendor.toLowerCase()))
+                match = false;
             // If an amount is provided, compares it to the transaction’s amount
             if (amount != null && transaction.getAmount() != amount) match = false;
 
@@ -433,13 +435,12 @@ public class FinancialTracker {
                 System.out.println(transaction.toString());
                 found = true;
             }
-
+        }
     if (!found){
         System.out.println("No transactions could be found based on your search ");
-            }
+    }
         }
     }
-}
 
 
 
