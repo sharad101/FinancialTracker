@@ -1,13 +1,10 @@
-# Financial Tracker/Accounting Ledger Application
+# Accounting Ledger Application
 
 ## Description of the Project
 
-In this project, you will use what you have learned about Java programming to
-create a CLI application. With this application you can track all financial
-transactions for a business or for personal use.
-All transactions in the application should be read from and saved to a transaction
-file named transactions.csv. Each transaction should be saved as a single
-line.
+The Accounting Ledger Application is an application designed to help users manage and track their financial transactions. 
+It supports adding deposits and payments, viewing a full transaction ledger, and running powerful search and reporting functions based on date, vendor, description, and amount. 
+All data is stored in a CSV file.
 
 
 ## User Stories
@@ -17,7 +14,25 @@ line.
 
 ## Setup
 
-Instructions on how to set up and run the project using IntelliJ IDEA.
+1. Clone the Repository
+    1. git clone https://github.com/your-username/financial-ledger-tracker.git
+    2. cd financial-ledger-tracker
+   
+
+2. Open/Launch in IntelliJ IDEA
+   Launch IntelliJ IDEA
+    1. Click File > Open
+   2. Select the project folder you just cloned
+
+
+3. Configure Project
+   1. Go to File > Project Structure
+
+
+4. Build and Run the Project
+   1. Open the main class file (FinancialTracker.java)
+   2. Right-click on it and select Run 'Main.main()'
+
 
 ### Prerequisites
 
@@ -36,21 +51,19 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 ## Technologies Used
 
-- Java: Mention the version you are using.
-- Any additional libraries or frameworks used in the project.
+- Java 17
 
 ## Demo
 
-Include screenshots or GIFs that show your application in action. Use tools like [Giphy Capture](https://giphy.com/apps/giphycapture) to record a GIF of your application.
-
-![Application Screenshot](path/to/your/screenshot.png)
+![Demo](/Users/sharadpatel/Desktop/pluralsight/capstones/FinancialTracker/giphy.gif)
 
 ## Future Work
 
 Outline potential future enhancements or functionalities you might consider adding:
 
-- Additional feature to be developed.
-- Improvement of current functionalities.
+- Authentication System: Add user login and account separation so each user has a private ledger.
+
+- Category Support: Allow users to tag transactions with categories (e.g., groceries, utilities) and filter/search by them.
 
 ## Resources
 
@@ -63,6 +76,6 @@ List resources such as tutorials, articles, or documentation that helped you dur
 
 Express gratitude towards those who provided help, guidance, or resources:
 
-- Thank you to [Mentor's Name] for continuous support and guidance.
-- A special thanks to all teammates for their dedication and teamwork.
+- Thank you to Raymond for continuous support and guidance.
+
  
