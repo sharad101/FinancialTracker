@@ -43,7 +43,7 @@ All data is stored in a CSV file.
 
 4. Build and Run the Project
    1. Open the main class file (FinancialTracker.java)
-   2. Right-click on it and select Run 'Main.main()'
+   2. Right-click on it and select Run 'FinancialTracker.main()'
 
 
 ### Prerequisites
@@ -67,9 +67,7 @@ Follow these steps to get your application running within IntelliJ IDEA:
 
 ## Demo
 
-![Demo](/Users/sharadpatel/Desktop/pluralsight/capstones/FinancialTracker/giphy.gif)
-
-![Demo1](/Desktop/pluralsight/capstones/FinancialTracker/demo.png)
+![demo.gif](demo.gif)
 
 ## Future Work
 

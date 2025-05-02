@@ -59,7 +59,7 @@ public class FinancialTracker {
 
 
     // Method: loadTransactions
-    // Description: Loads transactions from the CSV file into the ArrayList at program start.
+    // Description: Loads transactions from the CSV file into the ArrayList at start of program.
     public static void loadTransactions(String fileName) {
         File file = new File(fileName);
 
@@ -119,7 +119,6 @@ public class FinancialTracker {
                 System.out.println("Amount must be positive.");
                 return;
             }
-
 
             Transaction deposit = new Transaction(date, time, description, vendor, amount);
             transactions.add(deposit);
