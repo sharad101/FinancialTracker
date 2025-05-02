@@ -239,12 +239,8 @@ public class FinancialTracker {
             System.out.println(transactions.get(i));
         }
 
-//        for (Transaction transaction : transactions) {
-//            System.out.println(transaction.toString());
-//        }
     }
-
-
+    
     // Method: displayDeposits
     // Description: Displays only deposits
     private static void displayDeposits() {
