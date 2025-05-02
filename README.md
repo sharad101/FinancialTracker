@@ -9,9 +9,21 @@ All data is stored in a CSV file.
 
 ## User Stories
 
-- As a user, I want to be able to choose between adding a deposit, adding a payment, viewing the ledger, or exiting the application from the home menu.
-- As a user, I want to receive immediate feedback, so I can understand what to do next.
+- As a user, I want to view the home screen with navigation options so I can access different parts of the application.
 
+- As a user, I want to add a deposit so I can record incoming funds in the ledger.
+
+- As a user, I want to make a payment so I can record outgoing expenses in the ledger.
+
+- As a user, I want to view the ledger so I can see all transactions listed from newest to oldest.
+
+- As a user, I want to filter the ledger to show only deposit entries 
+
+- As a user, I want to filter the ledger to show only payment entries
+
+- As a user, I want to access the reports screen so I can generate custom transaction reports.
+
+- As a user, I want to perform a custom search using various filters so I can find specific transactions.
 ## Setup
 
 1. Clone the Repository
@@ -56,6 +68,8 @@ Follow these steps to get your application running within IntelliJ IDEA:
 ## Demo
 
 ![Demo](/Users/sharadpatel/Desktop/pluralsight/capstones/FinancialTracker/giphy.gif)
+
+![Demo1](/Desktop/pluralsight/capstones/FinancialTracker/demo.png)
 
 ## Future Work
 
